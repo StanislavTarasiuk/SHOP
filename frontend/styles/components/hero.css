@@ -38,12 +38,26 @@
 .hero__search-icon {
   width: 14px;
   height: 14px;
+  flex-shrink: 0;
+  background-image: var(--icon-search);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.hero__search-placeholder {
+.hero__search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
   font-size: var(--font-size-xs);
-  color: rgba(0, 0, 0, 0.66);
+  color: var(--color-text);
   letter-spacing: var(--letter-spacing-wide);
+  font-family: var(--font-family-base);
+}
+
+.hero__search-input::placeholder {
+  color: rgba(0, 0, 0, 0.66);
 }
 
 .hero__title {
