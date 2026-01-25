@@ -1,0 +1,137 @@
+.hero {
+  margin-top: var(--spacing-xl);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--spacing-3xl);
+  align-items: center;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.hero__categories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-md);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.hero__search {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background-color: var(--color-input);
+  height: 50px;
+  border-radius: var(--radius-xs);
+  padding: 0 var(--spacing-md);
+  max-width: 367px;
+}
+
+.hero__search-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.hero__search-placeholder {
+  font-size: var(--font-size-xs);
+  color: rgba(0, 0, 0, 0.66);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.hero__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xl);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 40px;
+}
+
+.hero__title span {
+  display: block;
+}
+
+.hero__season {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-md);
+  letter-spacing: var(--letter-spacing-wide);
+  margin: 0;
+}
+
+.hero__season span {
+  display: block;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.hero__shop-button img {
+  width: 47px;
+}
+
+.hero__pager {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.hero__images {
+  display: grid;
+  grid-template-columns: repeat(2, var(--hero-card-width));
+  gap: 41px;
+}
+
+.image-card {
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  background-color: var(--color-white);
+}
+
+.image-card--hero {
+  width: var(--hero-card-width);
+  height: var(--hero-card-height);
+}
+
+.image-card--hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__images {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .image-card--hero {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 366 / 376;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__images {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

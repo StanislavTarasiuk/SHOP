@@ -1,0 +1,23 @@
+.page-hero {
+  margin-top: var(--spacing-3xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.page-hero__breadcrumb {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xs);
+  letter-spacing: 1px;
+  margin: 0 0 var(--spacing-xs);
+}
+
+.page-hero__breadcrumb-muted {
+  color: rgba(0, 0, 0, 0.66);
+}
+
+.page-hero__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-lg);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}

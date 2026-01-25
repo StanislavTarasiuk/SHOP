@@ -1,0 +1,34 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-lg);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-md);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  border-radius: var(--radius-xs);
+}
+
+.button--ghost {
+  background-color: var(--color-input);
+  color: var(--color-black);
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button--outline {
+  background-color: transparent;
+}
+
+.icon-button img {
+  width: 12px;
+  height: auto;
+}

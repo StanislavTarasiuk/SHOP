@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internet Shop | Checkout</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body data-page="checkout">
+    <div data-partial="header"></div>
+    <main class="page page--checkout">
+      <section class="checkout">
+        <h1 class="checkout__title">Checkout</h1>
+        <div class="checkout__steps">
+          <span>Information</span>
+          <span>Shipping</span>
+          <span>Payment</span>
+        </div>
+        <div class="checkout__layout">
+          <form class="checkout-form">
+            <div>
+              <div class="checkout-form__section-title">Contact info</div>
+              <div class="checkout-form__grid checkout-form__grid--single">
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="email">Email</label>
+                  <input class="checkout-form__input" id="email" type="email" />
+                </div>
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="phone">Phone</label>
+                  <input class="checkout-form__input" id="phone" type="tel" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="checkout-form__section-title">Shipping address</div>
+              <div class="checkout-form__grid">
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="first-name">First Name</label>
+                  <input class="checkout-form__input" id="first-name" type="text" />
+                </div>
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="last-name">Last Name</label>
+                  <input class="checkout-form__input" id="last-name" type="text" />
+                </div>
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="country">Country</label>
+                  <input class="checkout-form__input" id="country" type="text" />
+                </div>
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="state">State / Region</label>
+                  <input class="checkout-form__input" id="state" type="text" />
+                </div>
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="address">Address</label>
+                  <input class="checkout-form__input" id="address" type="text" />
+                </div>
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="city">City</label>
+                  <input class="checkout-form__input" id="city" type="text" />
+                </div>
+                <div class="checkout-form__field">
+                  <label class="checkout-form__label" for="postal">Postal Code</label>
+                  <input class="checkout-form__input" id="postal" type="text" />
+                </div>
+              </div>
+            </div>
+            <button class="button button--ghost checkout-form__button" type="submit">
+              Shipping
+            </button>
+          </form>
+          <aside class="checkout-summary">
+            <div class="checkout-summary__title">Your Order</div>
+            <div class="checkout-summary__item">
+              <div class="checkout-summary__thumb">
+                <img src="assets/images/checkout-item-1.png" alt="Basic Heavy T-shirt" />
+              </div>
+              <div>
+                <div>Basic Heavy T-shirt</div>
+                <div>Black/L</div>
+                <div>(1)</div>
+                <div>Change</div>
+              </div>
+              <div>$ 99</div>
+            </div>
+            <div class="checkout-summary__item">
+              <div class="checkout-summary__thumb">
+                <img src="assets/images/checkout-item-2.png" alt="Basic Fit T-Shirt" />
+              </div>
+              <div>
+                <div>Basic Fit T-Shirt</div>
+                <div>Black/L</div>
+                <div>(1)</div>
+                <div>Change</div>
+              </div>
+              <div>$ 99</div>
+            </div>
+            <div class="checkout-summary__line"></div>
+            <div class="checkout-summary__row">
+              <span>Subtotal</span>
+              <span>$180.00</span>
+            </div>
+            <div class="checkout-summary__row">
+              <span>Shipping</span>
+              <span>Calculated at next step</span>
+            </div>
+            <div class="checkout-summary__line"></div>
+            <div class="checkout-summary__row checkout-summary__total">
+              <span>Total</span>
+              <span>$180.00</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <div data-partial="footer"></div>
+    <script src="scripts/ui.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+.footer {
+  background-color: var(--color-surface);
+  margin-top: var(--spacing-4xl);
+}
+
+.footer__container {
+  max-width: calc(var(--container-max) + (var(--container-padding) * 2));
+  margin: 0 auto;
+  padding: var(--spacing-4xl) var(--container-padding) var(--spacing-2xl);
+  position: relative;
+}
+
+.footer__to-top {
+  position: absolute;
+  left: var(--spacing-xs);
+  bottom: var(--spacing-2xl);
+  width: 64px;
+  height: 64px;
+  padding: 0;
+}
+
+.footer__to-top img {
+  width: 100%;
+  height: 100%;
+}
+
+.footer__columns {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: var(--spacing-4xl);
+  align-items: start;
+}
+
+.footer__column-title {
+  font-size: var(--font-size-xxs);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: var(--spacing-lg);
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.footer__list span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.footer__tech {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footer__tech-title {
+  font-size: var(--font-size-xxs);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+.footer__tech-word {
+  font-family: var(--font-family-base);
+  font-weight: 900;
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-black);
+}
+
+.footer__tech-word--muted {
+  color: #ececec;
+}
+
+.footer__tech-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.footer__tech-note {
+  font-size: var(--font-size-xs);
+  opacity: 0.4;
+  max-width: 160px;
+}
+
+.footer__tech-divider {
+  font-size: 56px;
+  line-height: var(--line-height-tight);
+  opacity: 0.2;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-4xl);
+  font-size: var(--font-size-xxs);
+  text-transform: lowercase;
+  opacity: 0.4;
+}
+
+.footer__legal {
+  display: flex;
+  gap: var(--spacing-xl);
+}

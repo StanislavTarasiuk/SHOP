@@ -1,0 +1,47 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background-color: var(--color-input);
+  height: 50px;
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-xs);
+  max-width: 367px;
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wide);
+  color: rgba(0, 0, 0, 0.66);
+}
+
+.search-bar img {
+  width: 14px;
+  height: 14px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.product-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.product-form__label {
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.product-form__input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-md);
+}
+
+.product-form__button {
+  align-self: flex-start;
+}
