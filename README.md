@@ -23,12 +23,13 @@ The project is implemented using **Vanilla JavaScript, HTML, CSS**, with a simpl
 
 ## 🛠 Technology Stack
 
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6+)
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6+), HTMX
 - **Backend:** Node.js, Express
 - **Database:** SQLite
 - **LocalStorage** as fallback for offline usage
 
-No external frameworks or frontend libraries are used.
+**Frontend Libraries:**
+- **HTMX** - For declarative HTML partials loading and dynamic content updates
 
 ---
 

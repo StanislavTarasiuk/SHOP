@@ -40,7 +40,13 @@
   opacity: 0.8;
 }
 
-.header__link--active {
+/* Highlight active navigation link using CSS attribute selectors */
+/* Works automatically based on data-page attribute on body */
+body[data-page="home"] .header__link[data-page="home"],
+body[data-page="products"] .header__link[data-page="products"],
+body[data-page="cart"] .header__link[data-page="cart"],
+body[data-page="product"] .header__link[data-page="product"],
+body[data-page="checkout"] .header__link[data-page="checkout"] {
   opacity: 1;
 }
 

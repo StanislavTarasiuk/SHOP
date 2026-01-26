@@ -33,7 +33,8 @@ graph TB
 #### Frontend
 - **HTML5**: Semantic markup with partials structure
 - **CSS3**: Modular CSS with global variables
-- **Vanilla JavaScript (ES6+)**: No frameworks or libraries
+- **Vanilla JavaScript (ES6+)**: Core JavaScript logic
+- **HTMX**: Declarative HTML partials loading and dynamic content updates
 - **BEM Methodology**: For all HTML/CSS class naming
 
 #### Backend
@@ -55,7 +56,7 @@ frontend/
    └─ product-list.html    # Product list container
 ```
 
-**Partials Loading**: Partials are loaded dynamically using JavaScript `fetch()` API and inserted into containers in `index.html`.
+**Partials Loading**: Partials are loaded dynamically using **HTMX** library with declarative HTML attributes (`hx-get`, `hx-swap`, `hx-trigger`). This provides a cleaner, more maintainable approach compared to manual `fetch()` calls.
 
 #### CSS Architecture
 ```

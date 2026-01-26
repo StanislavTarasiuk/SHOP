@@ -11,7 +11,8 @@
 ### Technology Stack
 
 #### Frontend
-- **Vanilla JavaScript (ES6+)** - No frameworks or libraries
+- **Vanilla JavaScript (ES6+)** - Core JavaScript logic
+- **HTMX** - Declarative HTML partials loading and dynamic content updates
 - **HTML5** with partials structure (index.html + partials/)
 - **CSS3** with modular structure (global.css + component files)
 - **BEM methodology** for all HTML/CSS class naming

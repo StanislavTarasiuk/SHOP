@@ -16,36 +16,84 @@ frontend/
 
 ### Loading Partials Pattern
 
-#### Method 1: JavaScript Fetch (Recommended)
-```javascript
-/**
- * Load HTML partial into a container
- * @param {string} partialPath - Path to partial file
- * @param {HTMLElement} container - Container element
- */
-async function loadPartial(partialPath, container) {
-  try {
-    const response = await fetch(partialPath);
-    const html = await response.text();
-    container.innerHTML = html;
-    
-    // Re-initialize any scripts needed for the partial
-    initializePartialScripts(container);
-  } catch (error) {
-    console.error(`Failed to load partial ${partialPath}:`, error);
-  }
-}
+#### Method 1: HTMX (Recommended)
+HTMX provides a declarative approach to loading HTML partials using HTML attributes.
 
-// Usage in index.html
-document.addEventListener('DOMContentLoaded', async () => {
-  const headerContainer = document.getElementById('header-container');
-  const footerContainer = document.getElementById('footer-container');
+**Setup:**
+1. Add HTMX library to `<head>`:
+```html
+<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+```
+
+2. Use HTMX attributes in HTML:
+```html
+<div
+  hx-trigger="load"
+  hx-swap="outerHTML"
+  hx-get="partials/header.html"
+></div>
+```
+
+**HTMX Attributes Explained:**
+- `hx-trigger="load"` - Load the partial when the element is loaded
+- `hx-swap="outerHTML"` - Replace the entire element with the loaded content
+- `hx-get="partials/header.html"` - URL to fetch the partial from
+
+**Benefits:**
+- Declarative syntax - no JavaScript needed for basic partial loading
+- Automatic handling of loading states and errors
+- Works seamlessly with existing JavaScript for additional functionality
+
+**Example in index.html:**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internet Shop</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+  <!-- Header partial -->
+  <div
+    hx-trigger="load"
+    hx-swap="outerHTML"
+    hx-get="partials/header.html"
+  ></div>
   
-  await Promise.all([
-    loadPartial('partials/header.html', headerContainer),
-    loadPartial('partials/footer.html', footerContainer)
-  ]);
-});
+  <!-- Main content -->
+  <main class="main">
+    <!-- Content here -->
+  </main>
+  
+  <!-- Footer partial -->
+  <div
+    hx-trigger="load"
+    hx-swap="outerHTML"
+    hx-get="partials/footer.html"
+  ></div>
+  
+  <script src="scripts/ui.js" defer></script>
+</body>
+</html>
+```
+
+**JavaScript Integration:**
+After HTMX loads partials, use event listeners to initialize additional functionality:
+```javascript
+// Initialize UI after HTMX loads partials
+const initializeUI = () => {
+  highlightActiveNav();
+  attachFooterActions();
+};
+
+// Run on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', initializeUI);
+
+// Also run after HTMX swaps content (when partials are loaded)
+document.body.addEventListener('htmx:afterSwap', initializeUI);
 ```
 
 #### Method 2: Server-Side Includes (if using server)
@@ -60,20 +108,29 @@ If backend serves HTML, use server-side includes or template engine.
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Internet Shop</title>
   <link rel="stylesheet" href="styles/main.css">
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 <body>
-  <!-- Header partial -->
-  <div id="header-container"></div>
+  <!-- Header partial loaded via HTMX -->
+  <div
+    hx-trigger="load"
+    hx-swap="outerHTML"
+    hx-get="partials/header.html"
+  ></div>
   
   <!-- Main content -->
   <main class="main">
     <div id="product-list-container"></div>
   </main>
   
-  <!-- Footer partial -->
-  <div id="footer-container"></div>
+  <!-- Footer partial loaded via HTMX -->
+  <div
+    hx-trigger="load"
+    hx-swap="outerHTML"
+    hx-get="partials/footer.html"
+  ></div>
   
-  <script type="module" src="scripts/ui.js"></script>
+  <script src="scripts/ui.js" defer></script>
 </body>
 </html>
 ```

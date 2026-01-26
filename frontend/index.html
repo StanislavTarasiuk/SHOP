@@ -6,9 +6,14 @@
     <title>LAURA</title>
     <link rel="icon" type="image/png" href="assets/icons/logo.png" />
     <link rel="stylesheet" href="styles/main.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   </head>
   <body data-page="home">
-    <div data-partial="header"></div>
+    <div
+      hx-trigger="load"
+      hx-swap="outerHTML"
+      hx-get="partials/header.html"
+    ></div>
     <main class="page page--home">
       <section class="hero">
         <div class="hero__grid">
@@ -33,7 +38,7 @@
             </h1>
             <p class="hero__season">
               <span>Summer</span>
-              <span>2024</span>
+              <span>2026</span>
             </p>
             <div class="hero__actions">
               <button class="button button--ghost hero__shop-button" type="button">
@@ -231,7 +236,11 @@
         </div>
       </section>
     </main>
-    <div data-partial="footer"></div>
+    <div
+      hx-trigger="load"
+      hx-swap="outerHTML"
+      hx-get="partials/footer.html"
+    ></div>
     <script src="scripts/ui.js" defer></script>
   </body>
 </html>

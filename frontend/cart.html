@@ -6,9 +6,14 @@
     <title>Internet Shop | Shopping Bag</title>
     <link rel="icon" type="image/png" href="assets/icons/logo.png" />
     <link rel="stylesheet" href="styles/main.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   </head>
   <body data-page="cart">
-    <div data-partial="header"></div>
+    <div
+      hx-trigger="load"
+      hx-swap="outerHTML"
+      hx-get="partials/header.html"
+    ></div>
     <main class="page page--cart">
       <section class="cart">
         <div class="cart__header">
@@ -85,7 +90,11 @@
         </div>
       </section>
     </main>
-    <div data-partial="footer"></div>
+    <div
+      hx-trigger="load"
+      hx-swap="outerHTML"
+      hx-get="partials/footer.html"
+    ></div>
     <script src="scripts/ui.js" defer></script>
   </body>
 </html>
