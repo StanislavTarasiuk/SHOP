@@ -1,12 +1,19 @@
+/* Global styles and CSS variables */
 @import url('global.css');
+
+/* Global components */
 @import url('components/header.css');
 @import url('components/footer.css');
 @import url('components/buttons.css');
-@import url('components/hero.css');
 @import url('components/product-card.css');
-@import url('components/weekly.css');
-@import url('components/collections.css');
-@import url('components/approach.css');
+
+/* Home page partials */
+@import url('components/header-hero.css');  /* partials/header-hero.html */
+@import url('components/carousel.css');      /* partials/carousel.html */
+@import url('components/colections.css');    /* partials/colections.html */
+@import url('components/fashion.css');      /* partials/fashion.html */
+
+/* Other pages */
 @import url('components/page-hero.css');
 @import url('components/products.css');
 @import url('components/filters.css');

@@ -14,7 +14,12 @@
       hx-swap="outerHTML"
       hx-get="partials/header.html"
     ></div>
-    <main class="page page--home">
+    <div
+      hx-trigger="load"
+      hx-swap="outerHTML"
+      hx-get="partials/header-hero.html"
+    ></div>
+   <!-- <main class="page page--home">
       <section class="hero">
         <div class="hero__grid">
           <div class="hero__content">
@@ -56,9 +61,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
+      <div
+        hx-trigger="load"
+        hx-swap="outerHTML"
+        hx-get="partials/carousel.html"
+      ></div>
 
-      <section class="weekly">
+      <!--<section class="weekly">
         <div class="section-heading">
           <div class="section-heading__title">
             <span>NEW</span>
@@ -140,9 +150,13 @@
             <img src="assets/icons/icon-arrow-right.png" alt="" />
           </button>
         </div>
-      </section>
-
-      <section class="collections">
+      </section> -->
+<div
+        hx-trigger="load"
+        hx-swap="outerHTML"
+        hx-get="partials/colections.html"
+      ></div>
+      <!--<section class="collections">
         <div class="collections__header">
           <h2 class="collections__title">XIV COLLECTIONS 23-24</h2>
           <a class="collections__link" href="products.html">See All</a>
@@ -211,9 +225,14 @@
           <span>More</span>
           <img src="assets/icons/icon-chevron.png" alt="" />
         </div>
-      </section>
+      </section> -->
 
-      <section class="approach">
+       <div 
+        hx-trigger="load"
+        hx-swap="outerHTML"
+        hx-get="partials/fashion.html"
+      ></div>
+      <!-- <section class="approach">
         <h2 class="approach__title">OUR APPROACH TO FASHION DESIGN</h2>
         <p class="approach__description">
           at elegant vogue , we blend creativity with craftsmanship to create fashion that
@@ -234,7 +253,7 @@
             <img src="assets/images/home-approach-4.png" alt="Approach 4" />
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
     <div
       hx-trigger="load"
