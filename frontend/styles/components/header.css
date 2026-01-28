@@ -53,20 +53,11 @@ body[data-page="checkout"] .header__link[data-page="checkout"] {
 .header__logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
 }
 
 .header__logo img {
-  width: 50px;
-  height: 50px;
-}
-
-.header__logo-text {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-xl);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-  color: var(--color-text);
+  width: 240px;
+  height: 120px;
 }
 
 .header__actions {
