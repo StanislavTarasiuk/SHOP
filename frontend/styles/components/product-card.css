@@ -22,8 +22,8 @@
   position: absolute;
   right: var(--spacing-sm);
   bottom: var(--spacing-sm);
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 37px;
   display: flex;
   align-items: center;
   justify-content: center;

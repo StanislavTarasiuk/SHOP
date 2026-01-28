@@ -55,9 +55,13 @@ body[data-page="checkout"] .header__link[data-page="checkout"] {
   align-items: center;
 }
 
-.header__logo img {
-  width: 240px;
-  height: 120px;
+.header__logo span {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-2xl);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-black);
+  font-weight: 900;
 }
 
 .header__actions {
