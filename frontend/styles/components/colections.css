@@ -95,18 +95,73 @@
 }
 
 @media (max-width: 1024px) {
+  .collections {
+    margin-top: var(--spacing-3xl);
+  }
+  
   .collections__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg);
+  }
+  
+  .collections__title {
+    font-size: var(--font-size-lg);
+    line-height: 1.2;
+  }
+  
+  .collections__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
   }
 }
 
 @media (max-width: 768px) {
+  .collections {
+    margin-top: var(--spacing-2xl);
+  }
+  
   .collections__grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 
   .collections__filters {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+  
+  .collections__filter-list {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+  
+  .collections__filter {
+    font-size: var(--font-size-sm);
+  }
+  
+  .collections__sort {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  
+  .collections__title {
+    font-size: var(--font-size-md);
+  }
+  
+  .collections__line {
+    margin: var(--spacing-lg) 0 var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .collections__grid {
+    gap: var(--spacing-sm);
+  }
+  
+  .collections__filter-list {
+    gap: var(--spacing-sm);
   }
 }

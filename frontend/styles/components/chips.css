@@ -16,3 +16,20 @@
   border-color: var(--color-text-muted);
   color: var(--color-black);
 }
+
+@media (max-width: 768px) {
+  .chip-group {
+    gap: var(--spacing-xs);
+  }
+  
+  .chip {
+    padding: 3px 10px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chip {
+    padding: 2px 8px;
+  }
+}

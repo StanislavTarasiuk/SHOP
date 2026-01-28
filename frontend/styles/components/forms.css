@@ -45,3 +45,40 @@
 .product-form__button {
   align-self: flex-start;
 }
+
+@media (max-width: 768px) {
+  .search-bar {
+    height: 44px;
+    max-width: 100%;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .product-form {
+    gap: var(--spacing-sm);
+  }
+  
+  .product-form__input {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  .product-form__label {
+    font-size: var(--font-size-xs);
+  }
+  
+  .product-form__button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    height: 40px;
+    font-size: var(--font-size-xxs);
+  }
+  
+  .product-form__input {
+    font-size: var(--font-size-xs);
+  }
+}

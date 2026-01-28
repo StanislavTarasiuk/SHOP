@@ -25,15 +25,40 @@
 @media (max-width: 1024px) {
   .products-layout {
     grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
   }
 
   .products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg);
+  }
+  
+  .products-content {
+    gap: var(--spacing-lg);
   }
 }
 
 @media (max-width: 768px) {
+  .products-layout {
+    gap: var(--spacing-lg);
+  }
+  
   .products-grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .products-content {
+    gap: var(--spacing-md);
+  }
+  
+  .products-toolbar {
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    gap: var(--spacing-sm);
   }
 }

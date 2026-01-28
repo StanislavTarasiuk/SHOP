@@ -73,3 +73,43 @@
   width: 9px;
   height: 9px;
 }
+
+@media (max-width: 768px) {
+  .filters {
+    gap: var(--spacing-md);
+  }
+  
+  .filters__title {
+    font-size: var(--font-size-sm);
+  }
+  
+  .filters__label {
+    font-size: var(--font-size-xs);
+  }
+  
+  .filters__size {
+    width: 34px;
+    height: 35px;
+    font-size: var(--font-size-xs);
+  }
+  
+  .filters__option {
+    font-size: var(--font-size-xxs);
+  }
+  
+  .filters__list-item {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters__sizes {
+    gap: var(--spacing-xs);
+  }
+  
+  .filters__size {
+    width: 32px;
+    height: 33px;
+  }
+}

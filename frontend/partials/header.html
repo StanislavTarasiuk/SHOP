@@ -1,8 +1,29 @@
+<input class="burger__toggle" type="checkbox" id="menu-toggle" aria-hidden="true" />
+<label class="burger__overlay" for="menu-toggle" aria-hidden="true" onclick="document.body.classList.remove('menu-open')"></label>
+<div class="burger__mobile" role="dialog" aria-label="Menu">
+  <div class="burger__mobile-header">
+    <span class="burger__mobile-logo">LAURA</span>
+    <label class="burger__close" for="menu-toggle" aria-label="Close menu" onclick="document.body.classList.remove('menu-open')"></label>
+  </div>
+  <nav class="burger__mobile-nav" aria-label="Mobile">
+    <a class="burger__mobile-link" href="index.html">Home</a>
+    <a class="burger__mobile-link" href="products.html">Collections</a>
+    <a class="burger__mobile-link" href="products.html#new">New</a>
+  </nav>
+  <div class="burger__mobile-actions">
+    <button class="header__icon header__icon--search" type="button" aria-label="Search"></button>
+    <button class="header__icon header__icon--cart" type="button" aria-label="Cart"></button>
+    <button class="header__icon header__icon--account" type="button" aria-label="Account"></button>
+  </div>
+</div>
+
 <header class="header">
   <div class="header__container">
-    <button class="header__menu" type="button" aria-label="Open menu">
-      <img src="assets/icons/icon-menu.png" alt="" />
-    </button>
+    <label class="burger__icon" for="menu-toggle" aria-label="Open menu" onclick="document.body.classList.toggle('menu-open')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
     <div class="header__logo">
       <span>LAURA</span>
     </div>

@@ -21,3 +21,28 @@
   text-transform: uppercase;
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .page-hero {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-hero__title {
+    font-size: var(--font-size-md);
+  }
+  
+  .page-hero__breadcrumb {
+    font-size: var(--font-size-xxs);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero {
+    margin-top: var(--spacing-lg);
+  }
+  
+  .page-hero__title {
+    font-size: var(--font-size-sm);
+  }
+}
