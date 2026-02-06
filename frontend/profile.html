@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - LAURA</title>
+    <link rel="icon" type="image/png" href="assets/icons/logo_white.png" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body data-page="profile">
+    <div hx-trigger="load" hx-swap="outerHTML" hx-get="partials/header.html"></div>
+
+    <main class="page profile-page">
+        <section class="profile-container">
+            <h1>My Profile</h1>
+            <div id="profile-loading">Loading profile...</div>
+            
+            <div id="profile-content" style="display: none;">
+                <div class="form-group">
+                    <label>Email (Read-only)</label>
+                    <input type="email" id="profile-email" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="profile-username">Username</label>
+                    <input type="text" id="profile-username" placeholder="Your username">
+                </div>
+                <div class="profile-actions">
+                    <button id="save-profile" class="button button--primary">Save Changes</button>
+                    <button id="logout-btn" class="button button--ghost">Logout</button>
+                </div>
+                <div id="profile-message" class="message"></div>
+            </div>
+        </section>
+    </main>
+
+    <div hx-trigger="load" hx-swap="outerHTML" hx-get="partials/footer.html"></div>
+
+    <!-- Scripts -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script>
+        $(document).ready(async function() {
+            // Check if user is logged in
+            const user = await Auth.getUser();
+            if (!user) {
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            // Load profile data
+            const { data: profile, error } = await Profile.getProfile(user.id);
+            
+            $('#profile-loading').hide();
+            if (error) {
+                $('#profile-message').addClass('error-message').text('Error loading profile: ' + error.message);
+            } else {
+                $('#profile-content').show();
+                $('#profile-email').val(profile.email);
+                $('#profile-username').val(profile.username);
+            }
+
+            // Save profile changes
+            $('#save-profile').click(async function() {
+                const newUsername = $('#profile-username').val();
+                const $btn = $(this);
+                const $msg = $('#profile-message');
+
+                $msg.text('').removeClass('error-message success-message');
+                $btn.prop('disabled', true).text('Saving...');
+
+                const { error: updateError } = await Profile.updateUsername(user.id, newUsername);
+
+                $btn.prop('disabled', false).text('Save Changes');
+                if (updateError) {
+                    $msg.addClass('error-message').text('Error updating profile: ' + updateError.message);
+                } else {
+                    $msg.addClass('success-message').text('Profile updated successfully!');
+                }
+            });
+
+            // Logout
+            $('#logout-btn').click(async function() {
+                await Auth.logout();
+            });
+        });
+    </script>
+</body>
+</html>

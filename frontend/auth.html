@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register - LAURA</title>
+    <link rel="icon" type="image/png" href="assets/icons/logo_white.png" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body data-page="auth">
+    <div hx-trigger="load" hx-swap="outerHTML" hx-get="partials/header.html"></div>
+
+    <main class="page auth-page">
+        <section class="auth-container">
+            <div class="auth-tabs">
+                <button id="show-login" class="auth-tab active">Login</button>
+                <button id="show-register" class="auth-tab">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form">
+                <h2>Login</h2>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required placeholder="******">
+                </div>
+                <div id="login-error" class="error-message"></div>
+                <button type="submit" class="button button--primary">Login</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form" style="display: none;">
+                <h2>Register</h2>
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" required placeholder="Choose a username">
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required placeholder="******">
+                </div>
+                <div id="register-error" class="error-message"></div>
+                <button type="submit" class="button button--primary">Register</button>
+            </form>
+        </section>
+    </main>
+
+    <div hx-trigger="load" hx-swap="outerHTML" hx-get="partials/footer.html"></div>
+
+    <!-- Scripts -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Tab switching
+            $('#show-login').click(function() {
+                $('.auth-tab').removeClass('active');
+                $(this).addClass('active');
+                $('#login-form').show();
+                $('#register-form').hide();
+            });
+
+            $('#show-register').click(function() {
+                $('.auth-tab').removeClass('active');
+                $(this).addClass('active');
+                $('#register-form').show();
+                $('#login-form').hide();
+            });
+
+            // Login handling
+            $('#login-form').submit(async function(e) {
+                e.preventDefault();
+                const email = $('#login-email').val();
+                const password = $('#login-password').val();
+                const $error = $('#login-error');
+                const $btn = $(this).find('button');
+
+                $error.text('');
+                $btn.prop('disabled', true).text('Logging in...');
+
+                const { data, error } = await Auth.login(email, password);
+
+                if (error) {
+                    $error.text(error.message);
+                    $btn.prop('disabled', false).text('Login');
+                } else {
+                    window.location.href = 'index.html';
+                }
+            });
+
+            // Registration handling
+            $('#register-form').submit(async function(e) {
+                e.preventDefault();
+                const username = $('#register-username').val();
+                const email = $('#register-email').val();
+                const password = $('#register-password').val();
+                const $error = $('#register-error');
+                const $btn = $(this).find('button');
+
+                $error.text('');
+                $btn.prop('disabled', true).text('Registering...');
+
+                const { data, error } = await Auth.register(email, password, username);
+
+                if (error) {
+                    $error.text(error.message);
+                    $btn.prop('disabled', false).text('Register');
+                } else {
+                    alert('Registration successful! Please check your email for confirmation (if enabled) or login.');
+                    $('#show-login').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

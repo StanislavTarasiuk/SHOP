@@ -72,6 +72,88 @@
   }
 }
 
+/* Auth & Profile Styles */
+.auth-container, .profile-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #888;
+}
+
+.auth-tab.active {
+    color: #000;
+    border-bottom: 2px solid #000;
+}
+
+.auth-form h2, .profile-container h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:disabled {
+    background: #f9f9f9;
+    color: #888;
+}
+
+.error-message {
+    color: #d93025;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.success-message {
+    color: #188038;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.profile-actions .button {
+    flex: 1;
+}
+
 @media (max-width: 480px) {
   .search-bar {
     height: 40px;
