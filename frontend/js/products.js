@@ -3,6 +3,10 @@
  */
 
 const Products = {
+    allProducts: [], // Store all products for local filtering
+    selectedSizes: [], // Store multiple selected sizes
+    selectedColors: [], // Store multiple selected colors
+
     /**
      * Fetch all products from Supabase ordered by created_at DESC.
      */
@@ -14,11 +18,75 @@ const Products = {
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
+            this.allProducts = data; // Cache products
             return { data, error: null };
         } catch (error) {
             console.error('Error fetching products:', error.message);
             return { data: [], error };
         }
+    },
+
+    /**
+     * Toggle size selection and re-render.
+     * @param {string} size 
+     */
+    toggleSize(size) {
+        const index = this.selectedSizes.indexOf(size);
+        if (index > -1) {
+            this.selectedSizes.splice(index, 1);
+        } else {
+            this.selectedSizes.push(size);
+        }
+        this.applyFilters();
+    },
+
+    /**
+     * Toggle color selection and re-render.
+     * @param {string} color 
+     */
+    toggleColor(color) {
+        const index = this.selectedColors.indexOf(color);
+        if (index > -1) {
+            this.selectedColors.splice(index, 1);
+        } else {
+            this.selectedColors.push(color);
+        }
+        this.applyFilters();
+    },
+
+    /**
+     * Apply all active filters and re-render.
+     */
+    applyFilters() {
+        // Update Size UI
+        $('.filters__size').each(function() {
+            const btnSize = $(this).text().trim();
+            $(this).toggleClass('filters__size--active', Products.selectedSizes.includes(btnSize));
+        });
+
+        // Update Color UI
+        $('.filters__color-btn').each(function() {
+            const btnColor = $(this).data('color');
+            $(this).toggleClass('filters__color-btn--active', Products.selectedColors.includes(btnColor));
+        });
+
+        let filtered = this.allProducts;
+
+        // Filter by Sizes (OR logic within sizes)
+        if (this.selectedSizes.length > 0) {
+            filtered = filtered.filter(p => 
+                p.sizes && p.sizes.some(s => this.selectedSizes.includes(s))
+            );
+        }
+
+        // Filter by Colors (OR logic within colors)
+        if (this.selectedColors.length > 0) {
+            filtered = filtered.filter(p => 
+                p.colors && p.colors.some(c => this.selectedColors.includes(c))
+            );
+        }
+
+        this.renderProducts(filtered);
     },
 
     /**
@@ -36,7 +104,7 @@ const Products = {
 
         products.forEach(product => {
             const productHTML = `
-                <article class="product-card">
+                <article class="product-card" style="cursor: pointer;">
                     <div class="product-card__image">
                         <img src="${product.image_url}" alt="${product.name}" />
                         <button class="product-card__action" type="button">
@@ -50,7 +118,13 @@ const Products = {
                     </div>
                 </article>
             `;
-            $container.append(productHTML);
+            const $card = $(productHTML);
+            $card.on('click', function(e) {
+                console.log('Saving product to localStorage:', product.id);
+                localStorage.setItem('selectedProductId', product.id);
+                window.location.href = 'product.html';
+            });
+            $container.append($card);
         });
     },
 
@@ -60,6 +134,17 @@ const Products = {
     async init() {
         const $container = $('.products-grid');
         
+        // Setup filter listeners
+        $('.filters__size').on('click', function() {
+            const size = $(this).text().trim();
+            Products.toggleSize(size);
+        });
+
+        $('.filters__color-btn').on('click', function() {
+            const color = $(this).data('color');
+            Products.toggleColor(color);
+        });
+
         // Optional: Add loading state
         $container.html('<p class="products-loading">Loading products...</p>');
 

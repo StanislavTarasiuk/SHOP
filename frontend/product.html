@@ -6,7 +6,10 @@
     <title>Internet Shop | Product</title>
     <link rel="icon" type="image/png" href="assets/icons/logo_black.png" />
     <link rel="stylesheet" href="styles/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="js/supabase-config.js"></script>
   </head>
   <body data-page="product">
     <div
@@ -35,15 +38,15 @@
             </button>
           </div>
           <div class="product-detail__main">
-            <img src="assets/images/product-detail-main.png" alt="Abstract print shirt" />
+            <img src="" alt="" />
           </div>
         </div>
         <div class="product-detail__info">
-          <h1 class="product-detail__title">ABSTRACT PRINT SHIRT</h1>
-          <div class="product-detail__price">$99</div>
+          <h1 class="product-detail__title">Loading...</h1>
+          <div class="product-detail__price"></div>
           <div class="product-detail__note">MRP incl. of all taxes</div>
           <p class="product-detail__description">
-            Relaxed-fit shirt. Camp collar and short sleeves. Button-up front.
+            Please wait while we fetch product details.
           </p>
           <div>
             <div class="product-detail__label">Color</div>
@@ -79,6 +82,9 @@
       hx-swap="outerHTML"
       hx-get="partials/footer.html"
     ></div>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/product-detail.js"></script>
     <script src="scripts/ui.js" defer></script>
   </body>
 </html>

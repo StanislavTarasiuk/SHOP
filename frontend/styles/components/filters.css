@@ -34,46 +34,6 @@
   font-size: var(--font-size-sm);
 }
 
-.filters__option {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: var(--font-size-xs);
-  letter-spacing: var(--letter-spacing-wide);
-}
-
-.filters__option input {
-  width: 22px;
-  height: 22px;
-  border: 1px solid var(--color-border-strong);
-}
-
-.filters__count {
-  color: var(--color-accent);
-}
-
-.filters__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.filters__list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--color-border);
-  font-size: var(--font-size-sm);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-}
-
-.filters__list-item img {
-  width: 9px;
-  height: 9px;
-}
-
 @media (max-width: 768px) {
   .filters {
     gap: var(--spacing-md);
@@ -92,15 +52,6 @@
     height: 35px;
     font-size: var(--font-size-xs);
   }
-  
-  .filters__option {
-    font-size: var(--font-size-xxs);
-  }
-  
-  .filters__list-item {
-    font-size: var(--font-size-xs);
-    padding: var(--spacing-xs) 0;
-  }
 }
 
 @media (max-width: 480px) {
@@ -112,4 +63,53 @@
     width: 32px;
     height: 33px;
   }
+}
+
+.filters__size--active {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+.filters__colors {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.filters__color-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.filters__color-btn:hover {
+  transform: scale(1.1);
+}
+
+.filters__color-btn--active {
+  transform: scale(1.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.7);
+}
+
+.filters__color-btn--active::after {
+  content: '✓';
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* For white color button, make the checkmark black and darken slightly more */
+.filters__color-btn--active[data-color="White"] {
+  filter: brightness(0.9);
+  border-color: #ccc;
+}
+.filters__color-btn--active[data-color="White"]::after {
+  color: black;
 }
