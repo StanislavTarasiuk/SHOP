@@ -6,6 +6,7 @@ const Products = {
     allProducts: [], // Store all products for local filtering
     selectedSizes: [], // Store multiple selected sizes
     selectedColors: [], // Store multiple selected colors
+    searchQuery: '', // Store search query for filtering
 
     /**
      * Fetch all products from Supabase ordered by created_at DESC.
@@ -71,6 +72,14 @@ const Products = {
         });
 
         let filtered = this.allProducts;
+
+        // Filter by Search Query (3+ characters, case-insensitive, partial match)
+        if (this.searchQuery.length >= 3) {
+            const query = this.searchQuery.toLowerCase();
+            filtered = filtered.filter(p => 
+                p.name && p.name.toLowerCase().includes(query)
+            );
+        }
 
         // Filter by Sizes (OR logic within sizes)
         if (this.selectedSizes.length > 0) {
@@ -156,6 +165,12 @@ const Products = {
         }
 
         this.renderProducts(data);
+
+        // Setup search listener
+        $('#product-search').on('input', function() {
+            Products.searchQuery = $(this).val().trim();
+            Products.applyFilters();
+        });
     }
 };
 
