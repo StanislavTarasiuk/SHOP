@@ -13,6 +13,16 @@
 .button--ghost {
   background-color: var(--color-input);
   color: var(--color-black);
+  transition: all var(--transition-base);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.button--active {
+  background-color: var(--color-black) !important;
+  color: var(--color-white) !important;
 }
 
 .icon-button {

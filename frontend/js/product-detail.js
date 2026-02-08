@@ -55,17 +55,6 @@ const ProductDetail = {
             `);
         }
 
-        // Update Colors (if available)
-        const $colorsContainer = $('.product-detail__colors');
-        $colorsContainer.empty();
-        if (product.colors && Array.isArray(product.colors)) {
-            product.colors.forEach(color => {
-                // We use a generic swatch class or try to map color names to existing CSS classes
-                const colorClass = color.toLowerCase().replace(/\s+/g, '-');
-                $colorsContainer.append(`<span class="product-card__swatch product-card__swatch--${colorClass}" title="${color}"></span>`);
-            });
-        }
-
         // Update Sizes (if available)
         const $sizesContainer = $('.product-detail__sizes');
         $sizesContainer.empty();
@@ -84,6 +73,7 @@ const ProductDetail = {
         console.log('Product ID from URL:', id);
         if (!id) {
             console.error('No product ID found in URL');
+            $('#page-loader').fadeOut(); // Hide loader even on error
             return;
         }
 
@@ -91,10 +81,51 @@ const ProductDetail = {
         
         if (error || !data) {
             $('.product-detail').html('<p class="products-error">Product not found.</p>');
+            $('#page-loader').fadeOut();
             return;
         }
 
         this.renderProduct(data);
+
+        // Setup Add to Cart
+        $('.product-detail__button').on('click', function() {
+            const $btn = $(this);
+            const selectedSize = $('.product-detail__size--active').text() || $('.product-detail__size').first().text();
+            
+            const cartItem = {
+                id: data.id,
+                name: data.name,
+                price: data.price,
+                image_url: data.image_url,
+                category: data.category,
+                size: selectedSize
+            };
+
+            if (typeof Cart !== 'undefined') {
+                Cart.addItem(cartItem);
+                
+                // Visual feedback instead of alert
+                const originalText = $btn.text();
+                $btn.addClass('button--active').text('ADDED');
+                
+                setTimeout(() => {
+                    $btn.removeClass('button--active').text(originalText);
+                }, 2000);
+            } else {
+                console.error('Cart module not loaded');
+            }
+        });
+
+        // Size selection logic
+        $(document).on('click', '.product-detail__size', function() {
+            $('.product-detail__size').removeClass('product-detail__size--active');
+            $(this).addClass('product-detail__size--active');
+        });
+
+        // Wait for 0,2 seconds as requested before hiding the loader
+        setTimeout(() => {
+            $('#page-loader').fadeOut(200);
+        }, 500);
     }
 };
 

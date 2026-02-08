@@ -85,6 +85,38 @@
   background-color: var(--color-chip-black);
 }
 
+.product-card__swatch--white {
+  background-color: #ffffff;
+}
+
+.product-card__swatch--grey {
+  background-color: #808080;
+}
+
+.product-card__swatch--blue {
+  background-color: #0000ff;
+}
+
+.product-card__swatch--red {
+  background-color: #ff0000;
+}
+
+.product-card__swatch--green {
+  background-color: #008000;
+}
+
+.product-card__swatch--yellow {
+  background-color: #ffff00;
+}
+
+.product-card__swatch--cream {
+  background-color: #fffdd0;
+}
+
+.product-card__swatch--beige {
+  background-color: #f5f5dc;
+}
+
 .product-card__badge {
   font-size: var(--font-size-xxs);
   color: rgba(0, 0, 0, 0.66);
