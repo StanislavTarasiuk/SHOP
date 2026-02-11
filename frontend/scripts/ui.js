@@ -5,6 +5,11 @@
 $(document).ready(async function() {
     // Check auth state and update header
     async function updateAuthUI() {
+        if (typeof Auth === 'undefined') {
+            console.error('Auth module not loaded');
+            return;
+        }
+
         const user = await Auth.getUser();
         const $accountLink = $('#header-account-link');
         const $userDisplay = $('#user-display-name');
@@ -14,9 +19,13 @@ $(document).ready(async function() {
             $accountLink.attr('href', 'profile.html');
             
             // Fetch profile to get username
-            const { data: profile } = await Profile.getProfile(user.id);
-            if (profile && profile.username) {
-                $userDisplay.text(profile.username).show();
+            if (typeof Profile !== 'undefined') {
+                const { data: profile } = await Profile.getProfile(user.id);
+                if (profile && profile.username) {
+                    $userDisplay.text(profile.username).show();
+                } else {
+                    $userDisplay.text(user.email.split('@')[0]).show();
+                }
             } else {
                 $userDisplay.text(user.email.split('@')[0]).show();
             }
@@ -27,25 +36,63 @@ $(document).ready(async function() {
         }
     }
 
-    // Initialize Auth UI
-    // Note: We use a small delay or event listener if header is loaded via HTMX
-    if ($('#header-account-link').length) {
-        updateAuthUI();
-    } else {
-        // If header is not yet in DOM (loaded via HTMX), wait for it
-        document.body.addEventListener('htmx:afterOnLoad', function(evt) {
-            if (evt.detail.target.id === 'header' || $(evt.detail.target).find('#header-account-link').length) {
-                updateAuthUI();
-            }
-        });
-        // Fallback: check every 500ms for a few times
-        let checks = 0;
-        const interval = setInterval(() => {
-            if ($('#header-account-link').length) {
-                updateAuthUI();
-                clearInterval(interval);
-            }
-            if (++checks > 10) clearInterval(interval);
-        }, 500);
+    // Update cart count from localStorage
+    function updateGlobalCartCount() {
+        if (typeof Cart !== 'undefined' && typeof Cart.updateCartCount === 'function') {
+            Cart.updateCartCount();
+        } else {
+            // Fallback if Cart module is not fully initialized or on pages where it's not loaded
+            const stored = localStorage.getItem('shopping_cart');
+            const items = stored ? JSON.parse(stored) : [];
+            const count = items.reduce((sum, item) => sum + item.quantity, 0);
+            const $cartIcons = $('.header__icon--cart');
+            
+            $cartIcons.each(function() {
+                let $badge = $(this).find('.cart-badge');
+                if ($badge.length === 0) {
+                    $badge = $('<span class="cart-badge"></span>').css({
+                        'position': 'absolute',
+                        'top': '-5px',
+                        'right': '-5px',
+                        'background': 'black',
+                        'color': 'white',
+                        'border-radius': '50%',
+                        'width': '18px',
+                        'height': '18px',
+                        'font-size': '10px',
+                        'display': 'flex',
+                        'align-items': 'center',
+                        'justify-content': 'center',
+                        'font-family': 'sans-serif'
+                    });
+                    $(this).css('position', 'relative').append($badge);
+                }
+                
+                if (count > 0) {
+                    $badge.text(count).show();
+                } else {
+                    $badge.hide();
+                }
+            });
+        }
     }
+
+    // Initialize UI elements
+    function initUI() {
+        updateAuthUI();
+        updateGlobalCartCount();
+    }
+
+    // Handle HTMX loaded content
+    document.body.addEventListener('htmx:afterOnLoad', function(evt) {
+        initUI();
+    });
+
+    // Initial call
+    initUI();
+
+    // Listen for cart updates
+    window.addEventListener('cart-updated', () => {
+        updateGlobalCartCount();
+    });
 });

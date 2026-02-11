@@ -155,6 +155,18 @@
     margin-bottom: 1rem;
 }
 
+.checkout-form__field-error {
+    color: #d93025;
+    font-size: 11px;
+    margin-top: 4px;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.checkout-form__input--error {
+    border-color: #d93025 !important;
+}
+
 .success-message {
     color: #188038;
     font-size: 0.85rem;

@@ -248,6 +248,99 @@ const Cart = {
                 const size = $item.attr('data-size');
                 this.removeItem(id, size);
             });
+
+            $(document).on('click', '.order-summary__button', async (e) => {
+                const $btn = $(e.currentTarget);
+                const items = this.getItems();
+                
+                // Очищуємо попередні помилки
+                $('.cart-error-message').remove();
+                
+                if (items.length === 0) {
+                    $btn.before('<div class="cart-error-message" style="color: #d93025; font-size: 13px; margin-bottom: 10px;">Your cart is empty</div>');
+                    return;
+                }
+
+                if (!$('.order-summary__checkbox input').is(':checked')) {
+                    $('.order-summary__checkbox').after('<div class="cart-error-message" style="color: #d93025; font-size: 13px; margin-top: 5px; margin-bottom: 10px;">Please agree to the Terms and Conditions</div>');
+                    return;
+                }
+
+                $btn.prop('disabled', true).text('Syncing...');
+
+                try {
+                    const { data: { session } } = await supabaseClient.auth.getSession();
+                    if (!session) {
+                        alert('Please login to continue');
+                        window.location.href = 'auth.html';
+                        return;
+                    }
+
+                    const user = session.user;
+                    const totals = this.calculateTotals();
+
+                    // 1. Get or create draft order
+                    let { data: order, error: orderError } = await supabaseClient
+                        .from('orders')
+                        .select('id')
+                        .eq('user_id', user.id)
+                        .eq('status', 'draft')
+                        .maybeSingle();
+
+                    if (orderError) throw orderError;
+
+                    if (!order) {
+                        const { data: newOrder, error: createError } = await supabaseClient
+                            .from('orders')
+                            .insert([{ 
+                                user_id: user.id, 
+                                status: 'draft',
+                                total_price: totals.total
+                            }])
+                            .select()
+                            .single();
+                        
+                        if (createError) throw createError;
+                        order = newOrder;
+                    } else {
+                        // Update total price
+                        await supabaseClient
+                            .from('orders')
+                            .update({ total_price: totals.total })
+                            .eq('id', order.id);
+                    }
+
+                    // 2. Sync order items
+                    // First, delete existing items for this order to keep it simple
+                    await supabaseClient
+                        .from('order_items')
+                        .delete()
+                        .eq('order_id', order.id);
+
+                    // Insert current items
+                    const orderItems = items.map(item => ({
+                        order_id: order.id,
+                        product_id: item.id,
+                        quantity: item.quantity,
+                        price: item.price,
+                        size: item.size,
+                        color: item.color || 'Default'
+                    }));
+
+                    const { error: itemsError } = await supabaseClient
+                        .from('order_items')
+                        .insert(orderItems);
+
+                    if (itemsError) throw itemsError;
+
+                    // Після успішного синку переходимо одразу на checkout
+                    window.location.href = 'checkout.html';
+                } catch (error) {
+                    console.error('Error syncing cart:', error);
+                    alert('Failed to sync cart with server. Please try again.');
+                    $btn.prop('disabled', false).text('Continue');
+                }
+            });
         }
     }
 };
