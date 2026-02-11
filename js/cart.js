@@ -103,7 +103,8 @@ const Cart = {
      */
     render() {
         const items = this.getItems();
-        console.log('Rendering cart with items:', items);
+        console.log('Cart.render() called. Items count:', items.length);
+        console.log('Items:', items);
         const $itemsContainer = $('.cart__items');
         
         if ($itemsContainer.length === 0) {
@@ -216,7 +217,7 @@ const Cart = {
      * Initialize cart page logic and event delegation.
      */
     init() {
-        console.log('Cart module initializing...');
+        console.log('Cart.init() started');
         console.log('Current page data-page:', $('body').data('page'));
         
         // Update count on all pages
