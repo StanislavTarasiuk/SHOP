@@ -44,7 +44,7 @@ const Checkout = {
 
         if (orderError || !order) {
             console.error('Error fetching draft order:', orderError);
-            // При помилці теж ховаємо лоадер, як у product-detail
+            // On error, also hide loader, same as in product-detail
             $('#page-loader').fadeOut();
             // If no draft order, maybe redirect back to cart
             // window.location.href = 'cart.html';
@@ -53,7 +53,7 @@ const Checkout = {
 
         this.renderSummary(order);
 
-        // Аналогічно до product-detail.js: невелика пауза перед прихованням лоадера
+        // Similar to product-detail.js: small pause before hiding loader
         setTimeout(() => {
             $('#page-loader').fadeOut(200);
         }, 500);
@@ -103,7 +103,7 @@ const Checkout = {
         $('.checkout-form').on('submit', async (e) => {
             e.preventDefault();
             
-            // Очищуємо попередні помилки
+            // Clear previous errors
             $('.checkout-form__field-error').remove();
             $('.checkout-form__input').removeClass('checkout-form__input--error');
             
@@ -123,7 +123,7 @@ const Checkout = {
                     postal_code: $('#postal').val()
                 };
 
-                // Валідація
+                // Validation
                 let hasErrors = false;
                 for (const [key, value] of Object.entries(formData)) {
                     if (!value || value.trim() === '') {

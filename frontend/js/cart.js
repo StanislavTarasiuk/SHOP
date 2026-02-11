@@ -253,7 +253,7 @@ const Cart = {
                 const $btn = $(e.currentTarget);
                 const items = this.getItems();
                 
-                // Очищуємо попередні помилки
+                // Clear previous errors
                 $('.cart-error-message').remove();
                 
                 if (items.length === 0) {
@@ -333,7 +333,7 @@ const Cart = {
 
                     if (itemsError) throw itemsError;
 
-                    // Після успішного синку переходимо одразу на checkout
+                    // After successful sync, proceed directly to checkout
                     window.location.href = 'checkout.html';
                 } catch (error) {
                     console.error('Error syncing cart:', error);
