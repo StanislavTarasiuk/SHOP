@@ -31,28 +31,27 @@ The project is implemented using **Vanilla JavaScript, HTML, CSS**, with **Supab
 ```txt
 SHOP/
 │
-├─ frontend/                # UI and client logic
-│   ├─ index.html          # Main entry point (Home)
-│   ├─ products.html       # Product catalog
-│   ├─ product.html        # Product detail page
-│   ├─ cart.html           # Shopping cart
-│   ├─ checkout.html       # Checkout page
-│   ├─ auth.html           # Login/Register page
-│   ├─ profile.html        # User profile page
-│   ├─ js/                 # JavaScript modules
-│   │   ├─ auth.js         # Authentication logic
-│   │   ├─ cart.js         # Cart management
-│   │   ├─ checkout.js     # Checkout process
-│   │   ├─ home.js         # Home page logic
-│   │   ├─ product-detail.js # Product detail logic
-│   │   ├─ products.js     # Catalog logic
-│   │   ├─ profile.js      # Profile management
-│   │   └─ supabase-config.js # Supabase initialization
-│   ├─ partials/           # HTML components (HTMX)
-│   ├─ styles/             # CSS files (BEM methodology)
-│   │   ├─ global.css      # Design tokens
-│   │   └─ components/     # Component-specific styles
-│   └─ assets/             # Images and icons
+├─ index.html          # Main entry point (Home)
+├─ products.html       # Product catalog
+├─ product.html        # Product detail page
+├─ cart.html           # Shopping cart
+├─ checkout.html       # Checkout page
+├─ auth.html           # Login/Register page
+├─ profile.html        # User profile page
+├─ js/                 # JavaScript modules
+│   ├─ auth.js         # Authentication logic
+│   ├─ cart.js         # Cart management
+│   ├─ checkout.js     # Checkout process
+│   ├─ home.js         # Home page logic
+│   ├─ product-detail.js # Product detail logic
+│   ├─ products.js     # Catalog logic
+│   ├─ profile.js      # Profile management
+│   └─ supabase-config.js # Supabase initialization
+├─ partials/           # HTML components (HTMX)
+├─ styles/             # CSS files (BEM methodology)
+│   ├─ global.css      # Design tokens
+│   └─ components/     # Component-specific styles
+├─ assets/             # Images and icons
 │
 ├─ docs/                    # Documentation and design
 │   ├─ PRD.md               # Product Requirements Document
@@ -75,7 +74,7 @@ SHOP/
 ## 🎨 Design System
 
 The project uses a **modular CSS architecture**:
-- **CSS Variables**: All design tokens (colors, fonts, spacing) are defined in `frontend/styles/global.css`.
+- **CSS Variables**: All design tokens (colors, fonts, spacing) are defined in `styles/global.css`.
 - **BEM Methodology**: All HTML/CSS classes follow the BEM naming convention.
 - **Component-based CSS**: Each component has its own CSS file in `frontend/styles/components/`.
 
@@ -100,7 +99,7 @@ The project uses a **modular CSS architecture**:
 ### Setup
 
 1. **Open the project**
-   Open `frontend/index.html` in your browser.
+   Open `index.html` in your browser.
 
 2. **Using a local server (recommended)**
    ```bash
@@ -109,7 +108,7 @@ The project uses a **modular CSS architecture**:
    
    # Or any other local server tool
    ```
-   Then navigate to `http://localhost:8000/frontend/index.html`.
+   Then navigate to `http://localhost:3000/index.html`.
 
 ---
 

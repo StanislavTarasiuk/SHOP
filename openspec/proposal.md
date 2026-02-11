@@ -47,16 +47,16 @@ graph TB
 ### Frontend Architecture
 
 #### HTML & Partials
-The application uses a "Partial Loading" strategy. The main pages (`index.html`, `products.html`, etc.) contain the layout, while reusable components are stored in `frontend/partials/` and loaded via HTMX.
+The application uses a "Partial Loading" strategy. The main pages (`index.html`, `products.html`, etc.) contain the layout, while reusable components are stored in `partials/` and loaded via HTMX.
 
 #### CSS Architecture (BEM)
-Styles are organized into component-specific files. All design tokens (colors, spacing, typography) are centralized in `frontend/styles/global.css`.
+Styles are organized into component-specific files. All design tokens (colors, spacing, typography) are centralized in `styles/global.css`.
 - **Block**: `.product-card`
 - **Element**: `.product-card__name`
 - **Modifier**: `.product-card--compact`
 
 #### JavaScript Modules
-Located in `frontend/js/`, each file handles a specific domain:
+Located in `js/`, each file handles a specific domain:
 - `auth.js`: Login, registration, and session management.
 - `cart.js`: Shopping cart logic, LocalStorage persistence, and UI rendering.
 - `checkout.js`: Order processing and delivery form handling.

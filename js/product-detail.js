@@ -89,6 +89,7 @@ const ProductDetail = {
 
         // Setup Add to Cart
         $('.product-detail__button').on('click', function() {
+            console.log('Add to cart button clicked');
             const $btn = $(this);
             const selectedSize = $('.product-detail__size--active').text() || $('.product-detail__size').first().text();
             

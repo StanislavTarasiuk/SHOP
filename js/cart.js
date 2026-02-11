@@ -21,6 +21,7 @@ const Cart = {
      * @param {Array} items 
      */
     saveItems(items) {
+        console.log('Saving items to localStorage:', items);
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
         // Trigger a custom event so other components can react to cart changes
         window.dispatchEvent(new CustomEvent('cart-updated', { detail: { items } }));
@@ -31,6 +32,7 @@ const Cart = {
      * @param {Object} product Product data (id, name, price, image_url, size)
      */
     addItem(product) {
+        console.log('Adding item to cart:', product);
         const items = this.getItems();
         // Check if item with same ID and size already exists
         const existingItem = items.find(item => 
@@ -47,6 +49,7 @@ const Cart = {
         }
 
         this.saveItems(items);
+        console.log('Cart items after add:', this.getItems());
     },
 
     /**
@@ -100,7 +103,14 @@ const Cart = {
      */
     render() {
         const items = this.getItems();
+        console.log('Rendering cart with items:', items);
         const $itemsContainer = $('.cart__items');
+        
+        if ($itemsContainer.length === 0) {
+            console.error('Cart items container not found!');
+            return;
+        }
+        
         const $layout = $('.cart__layout');
         const $emptyMessage = $('#cart-empty-message');
 
@@ -207,6 +217,7 @@ const Cart = {
      */
     init() {
         console.log('Cart module initializing...');
+        console.log('Current page data-page:', $('body').data('page'));
         
         // Update count on all pages
         this.updateCartCount();
